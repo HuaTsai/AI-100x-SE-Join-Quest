@@ -12,7 +12,7 @@
 ## Tech Stack
 
 1. Language Env：Java
-2. BDD Test framework: Cucumber
+2. BDD Test framework: Cucumber (含輸出 html 報表)
 3. Native test framework: Junit5
 
 ## Application Environment

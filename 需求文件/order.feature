@@ -88,3 +88,56 @@ Feature: E-commerce Order Pricing Promotions
       | productName | quantity |
       | T-shirt     | 3        |
       | 口紅          | 2        |
+
+  Scenario: Singles' Day promotion: 20% off when reach 10 items - items in one category
+    Given the Singles' Day promotion is active
+    When a customer places an order with:
+      | productName | quantity | unitPrice |
+      | 襪子        | 12        | 100       |
+    Then the order summary should be:
+      | originalAmount | discount | totalAmount |
+      | 1200           | 200      | 1000        |
+    And the customer should receive:
+      | productName | quantity |
+      | 襪子        | 12        |
+
+  Scenario: Singles' Day promotion: 20% off when reach 10 items - more items in one category
+    Given the Singles' Day promotion is active
+    When a customer places an order with:
+      | productName | quantity | unitPrice |
+      | 襪子        | 27        | 100       |
+    Then the order summary should be:
+      | originalAmount | discount | totalAmount |
+      | 2700           | 400      | 2300        |
+    And the customer should receive:
+      | productName | quantity |
+      | 襪子        | 27        |
+
+  Scenario: Singles' Day promotion: 20% off when reach 10 items - mixed categories
+    Given the Singles' Day promotion is active
+    When a customer places an order with:
+      | productName | quantity | unitPrice |
+      | 襪子        | 1        | 100       |
+      | 口紅        | 1        | 200       |
+      | 褲子        | 1        | 300       |
+      | 襯衫        | 1        | 400       |
+      | 褲子        | 1        | 500       |
+      | 帽子        | 1        | 600       |
+      | 眼鏡        | 1        | 700       |
+      | 鞋子        | 1        | 800       |
+      | 內衣        | 1        | 900       |
+      | 口罩        | 1        | 1000      |
+    Then the order summary should be:
+      | originalAmount | discount | totalAmount |
+      | 5500           | 0        | 5500        |
+    And the customer should receive:
+      | productName | quantity |
+      | 襪子        | 1        |
+      | 口紅        | 1        |
+      | 褲子        | 1        |
+      | 襯衫        | 1        |
+      | 帽子        | 1        |
+      | 眼鏡        | 1        |
+      | 鞋子        | 1        |
+      | 內衣        | 1        |
+      | 口罩        | 1        |

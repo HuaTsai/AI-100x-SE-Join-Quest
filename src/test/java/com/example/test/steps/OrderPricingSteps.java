@@ -105,4 +105,12 @@ public class OrderPricingSteps {
         }
         orderService.setBuyOneGetOnePromotion(buyOneGetOneActive);
     }
+
+    @Given("the Singles' Day promotion is active")
+    public void theSinglesDayPromotionIsActive() {
+        if (orderService == null) {
+            orderService = new OrderService();
+        }
+        orderService.setSinglesDayPromotionActive(true);
+    }
 }
